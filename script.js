@@ -9,9 +9,26 @@ function callbackMap(element, index, array) {
 }
 
 function map(array, callback) {
-  //sua lógica
-}
 
+  let arrayMap = []
+
+  for (let index = 0; index < array.length; index++) {
+    let element = array[index]
+    arrayMap.push(element)
+    callback(element, index, array)
+  }
+
+  //sua lógica
+  //
+  //
+  return arrayMap
+}
+map(arrayMap, function (element, index, array) {
+  console.log(`Número ${element} no index: ${index}, veio desse array: ${array}`)
+})
+/* console.log(map(arrayMap, function (element, index, array) {
+  `Número ${element} no index: ${index}, veio desse array: ${array}`
+})) */
 //console.table(map(arrayMap, callbackMap));
 
 //Método Filter ---------
@@ -27,9 +44,29 @@ function callbackFilter(element, index, array) {
 }
 
 function filter(array, callback) {
+
+  let arrayMaiorQueDois = []
+
+  for (let i = 0; i < array.length; i++) {
+
+    if (array[i] > 2) {
+      let indice = array[i]
+
+      arrayMaiorQueDois.push(indice)
+
+      callback(arrayMaiorQueDois, i, array)
+    }
+  }
+  return arrayMaiorQueDois
   //sua lógica
 }
 
+console.log(filter(arrayFilter, function (indice, i, array) {
+ 
+}))
+/* console.log(filter(arrayFilter, function (indice, i, array) {
+  
+})) */
 //console.log(filter(arrayFilter, callbackFilter));
 
 //Método Reduce ---------
@@ -43,8 +80,52 @@ function callbackReduce(acumulator, valorAtual) {
 }
 
 function reduce(array, callback, initialValue = 0) {
-  //sua lógica
-}
 
+  let total = initialValue
+
+  for (let i = 0; i < array.length; i++) {
+    total += array[i]
+    callback(total, array[i])
+  }
+  console.log(total)
+  //sua lógica
+  return total
+}
+reduce(arrayReduce, function (acumulator, valorAtual) {
+  return acumulator + valorAtual;
+})
+/* console.log(reduce)) */
 // console.log(reduce(arrayReduce, callbackReduce));
 // console.log(reduce(arrayReduce, callbackReduce, 50));
+
+
+
+
+
+/*
+**************** TESTE(REDUCE) *****************
+let array = [1, 2, 3, 4, 5, 6, 12]
+
+let churros = array.reduce((a, b) => a + b, 0)
+console.log(churros)
+
+let arrayDois = [
+  {
+    numero: 12,
+  },
+  {
+    numero: 16,
+  },
+  {
+    numero: 1,
+  },
+  {
+    numero: 14,
+  }
+]
+
+
+let churosDois = arrayDois.reduce((a, b) => a + b.numero, 0)
+console.log(churosDois)
+**************** FIM DO TESTE (REDUCE)*****************
+*/
