@@ -4,9 +4,6 @@ const arrayMap = [1, 2, 3, 4, 5]; //esse é o array que você terá que iterar
 
 // função callback
 // Ela apenas imprime o elemento na posição do index e de que array ele veio
-function callbackMap(element, index, array) {
-  return `Número ${element} no index: ${index}, veio desse array: ${array}`;
-}
 
 function map(array, callback) {
 
@@ -38,36 +35,35 @@ const arrayFilter = [1, 2, 3, 4, 5]; //esse é o array que você terá que itera
 // função callback
 // Ela apenas imprime o elemento que for maior que 2
 function callbackFilter(element, index, array) {
+
   if (element > 2 && index && array.length > 2) {
-    return true;
+    return element, index, array;
+
   }
 }
 
 function filter(array, callback) {
 
-  let arrayMaiorQueDois = []
+  let arrayFiltrado = []
 
   for (let i = 0; i < array.length; i++) {
-
-    if (array[i] > 2) {
-      let indice = array[i]
-
-      arrayMaiorQueDois.push(indice)
-
-      callback(arrayMaiorQueDois, i, array)
+    if (callback(array[i], i, array)) {
+      arrayFiltrado.push(array[i])
     }
   }
-  return arrayMaiorQueDois
-  //sua lógica
+
+  return arrayFiltrado
 }
 
-console.log(filter(arrayFilter, function (indice, i, array) {
- 
-}))
-/* console.log(filter(arrayFilter, function (indice, i, array) {
-  
+console.log(filter(arrayFilter, callbackFilter))
+
+/* console.log(filter(arrayFilter, function (array) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] > 2 && i && array.length > 2) {
+      return [array[i]];
+    }
+  }
 })) */
-//console.log(filter(arrayFilter, callbackFilter));
 
 //Método Reduce ---------
 
@@ -85,22 +81,13 @@ function reduce(array, callback, initialValue = 0) {
 
   for (let i = 0; i < array.length; i++) {
     total += array[i]
-    callback(total, array[i])
   }
-  console.log(total)
-  //sua lógica
-  return total
+
+  return callback(initialValue, total)
 }
-reduce(arrayReduce, function (acumulator, valorAtual) {
-  return acumulator + valorAtual;
-})
-/* console.log(reduce)) */
-// console.log(reduce(arrayReduce, callbackReduce));
-// console.log(reduce(arrayReduce, callbackReduce, 50));
 
-
-
-
+console.log(reduce(arrayReduce, callbackReduce));
+console.log(reduce(arrayReduce, callbackReduce, 50));
 
 /*
 **************** TESTE(REDUCE) *****************
@@ -123,8 +110,6 @@ let arrayDois = [
     numero: 14,
   }
 ]
-
-
 let churosDois = arrayDois.reduce((a, b) => a + b.numero, 0)
 console.log(churosDois)
 **************** FIM DO TESTE (REDUCE)*****************
