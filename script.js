@@ -7,21 +7,17 @@ const arrayMap = [1, 2, 3, 4, 5]; //esse é o array que você terá que iterar
 
 function map(array, callback) {
 
-  let arrayMap = []
+  let arrayMapUm =[]
 
   for (let index = 0; index < array.length; index++) {
     let element = array[index]
-    arrayMap.push(element)
-    callback(element, index, array)
+    arrayMapUm.push(callback(element, index, array))  
   }
 
-  //sua lógica
-  //
-  //
-  return arrayMap
+  return arrayMapUm
 }
 map(arrayMap, function (element, index, array) {
-  console.log(`Número ${element} no index: ${index}, veio desse array: ${array}`)
+   console.log(`Número ${element} no index: ${index}, veio desse array: ${array}`)
 })
 /* console.log(map(arrayMap, function (element, index, array) {
   `Número ${element} no index: ${index}, veio desse array: ${array}`
@@ -71,21 +67,19 @@ const arrayReduce = [1, 2, 3, 4, 5]; //esse é o array que você terá que itera
 
 // função callback
 // Ela apenas soma os valores, como um acumulador mesmo
-function callbackReduce(acumulator, valorAtual) {
+function callbackReduce(acumulator, valorAtual, index, array) {
   return acumulator + valorAtual;
 }
 
 function reduce(array, callback, initialValue = 0) {
 
-  let total = initialValue
+  let Valor = 0
 
   for (let i = 0; i < array.length; i++) {
-    total += array[i]
+    Valor += callback(initialValue, array[i], i, array)
   }
-
-  return callback(initialValue, total)
+  return Valor
 }
-
 console.log(reduce(arrayReduce, callbackReduce));
 console.log(reduce(arrayReduce, callbackReduce, 50));
 
