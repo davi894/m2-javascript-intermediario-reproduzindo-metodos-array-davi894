@@ -5,24 +5,22 @@ const arrayMap = [1, 2, 3, 4, 5]; //esse é o array que você terá que iterar
 // função callback
 // Ela apenas imprime o elemento na posição do index e de que array ele veio
 
+function callbackMap(element, index, array) {
+  return `elemento ${element} | index: ${index} | array: ${array}`
+}
+
 function map(array, callback) {
 
-  let arrayMapUm =[]
+  let arrayMapUm = []
 
   for (let index = 0; index < array.length; index++) {
     let element = array[index]
-    arrayMapUm.push(callback(element, index, array))  
+    arrayMapUm.push(callback(element, index, array))
+    // console.log(array[index])
   }
-
   return arrayMapUm
 }
-map(arrayMap, function (element, index, array) {
-   console.log(`Número ${element} no index: ${index}, veio desse array: ${array}`)
-})
-/* console.log(map(arrayMap, function (element, index, array) {
-  `Número ${element} no index: ${index}, veio desse array: ${array}`
-})) */
-//console.table(map(arrayMap, callbackMap));
+console.log(map(arrayMap, callbackMap))
 
 //Método Filter ---------
 
@@ -47,10 +45,8 @@ function filter(array, callback) {
       arrayFiltrado.push(array[i])
     }
   }
-
   return arrayFiltrado
 }
-
 console.log(filter(arrayFilter, callbackFilter))
 
 /* console.log(filter(arrayFilter, function (array) {
@@ -76,7 +72,7 @@ function reduce(array, callback, initialValue = 0) {
   let Valor = 0
 
   for (let i = 0; i < array.length; i++) {
-    Valor += callback(initialValue, array[i], i, array)
+    Valor = callback(initialValue, array[i], i, array)
   }
   return Valor
 }
