@@ -32,7 +32,6 @@ function callbackFilter(element, index, array) {
 
   if (element > 2 && index && array.length > 2) {
     return element, index, array;
-
   }
 }
 
@@ -69,12 +68,12 @@ function callbackReduce(acumulator, valorAtual, index, array) {
 
 function reduce(array, callback, initialValue = 0) {
 
-  let Valor = 0
+  let valor = initialValue
 
   for (let i = 0; i < array.length; i++) {
-    Valor = callback(initialValue, array[i], i, array)
+    valor = callback(valor, array[i], i, array)
   }
-  return Valor
+  return valor
 }
 console.log(reduce(arrayReduce, callbackReduce));
 console.log(reduce(arrayReduce, callbackReduce, 50));
